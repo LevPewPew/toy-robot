@@ -25,59 +25,27 @@ module ToyRobot
     end
 
     def turn_left
-      case @facing
-      when :north
-        @facing = :west
-      when :east
-        @facing = :north
-      when :south
-        @facing = :east
-      when :west
-        @facing = :south
-      end
-
       @facing = case @facing
       when :north then :west
-      when :east
-        @facing = :north
-      when :south
-        @facing = :east
-      when :west
-        @facing = :south
+      when :east then :north
+      when :south then :east
+      when :west then :south
       end
     end
 
     def turn_right
-      case @facing
-      when :north
-        @facing = :east
-      when :east
-        @facing = :south
-      when :south
-        @facing = :west
-      when :west
-        @facing = :north
+      @facing = case @facing
+      when :north then :east
+      when :east then :south
+      when :south then :west
+      when :west then :north
       end
     end
 
-    def move(direction)
-      case direction
-      when :north
-        @facing = :east
-      when :east
-        @facing = :south
-      when :south
-        @facing = :west
-      when :west
-        @facing = :north
-      end
+    # move 1 unit forward in the direction it is facing
+    def move
+      send("move_#{@facing}")
     end
 
-  end
-
-  class Table
-    def initialize
-      
-    end
   end
 end
